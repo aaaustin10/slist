@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'slist/usage_base.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id="navigation">
+        <ul>
+            {% for list in lists %}
+                <li><a href={% url 'list' list.id %}>{{ list }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}

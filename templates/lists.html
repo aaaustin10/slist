@@ -1,11 +1,12 @@
-{% extends "base.html" %}
-{% block body %}
-  {% if lists %}
-      <p>Here are your lists</p>
-      {% for list in lists %}
-        <p>{{ list.name }}</p>
-      {% endfor %}
-  {% else %}
-    <p>You have no lists</p>
-  {% endif %}
+{% extends "usage_base.html" %}
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form method='POST'>
+        {% csrf_token %}
+        <input type='button' value='New List'>
+        <input type='text' name='list_name'>
+    </form>
 {% endblock %}
