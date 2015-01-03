@@ -1,0 +1,17 @@
+{% extends 'usage_base.html' %}
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for item in items %}
+            <li class='item' data-id={{ item.id }}>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <form method='POST'>
+        {% csrf_token %}
+        <input type='button' value='New Item'>
+        <input type='text' name='item_name'>
+    </form>
+{% endblock %}
