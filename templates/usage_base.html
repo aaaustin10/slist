@@ -11,6 +11,9 @@
             {% for list in lists %}
                 <li><a href={% url 'list' list.id %}>{{ list }}</a></li>
             {% endfor %}
+            {% if not lists %}
+                <li>You have no lists!</li>
+            {% endif %}
         </ul>
     </div>
     <div id="content-wrapper">

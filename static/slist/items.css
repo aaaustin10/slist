@@ -1,0 +1,15 @@
+.marked
+{
+    text-decoration: line-through;
+}
+
+ul
+{
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+#create
+{
+    width: 100px;
+}

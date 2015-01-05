@@ -1,0 +1,20 @@
+{% extends 'usage_base.html' %}
+{% load staticfiles %}
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "slist/items.css" %}">
+    <script src="{% static 'slist/items.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <span id='list_heading'>{{ list }}</span>
+    <input id='delete_list' class='button delete' type='button' title='Delete this list and all items in it' value='✗'>
+    <ul>
+        {% for item in items %}
+            <li class='item' data-id={{ item.id }}>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    {% csrf_token %}
+    <input id='create' type='text' placeholder='Create item'>
+    <input id='delete_items' class='button delete' type='button' title='Delete all marked items' value='✗'>
+{% endblock %}
