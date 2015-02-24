@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from slist.models import *
 
 class index(TemplateView):
@@ -10,8 +11,13 @@ class index(TemplateView):
 
     def post(self, request):
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
-        login(request, user)
-        return HttpResponseRedirect(reverse("lists"))
+        if user:
+            login(request, user)
+            return HttpResponseRedirect(reverse('lists'))
+        else:
+            messages.warning(request, 'Username or password incorrect.')
+            return HttpResponseRedirect(self.request.path)
+
 
 class lists(ListView):
     context_object_name = "lists"
