@@ -2,10 +2,16 @@ from django.views.generic import TemplateView, ListView
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login
 from slist.models import *
 
 class index(TemplateView):
     template_name = "index.html"
+
+    def post(self, request):
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        login(request, user)
+        return HttpResponseRedirect(reverse("lists"))
 
 class lists(ListView):
     context_object_name = "lists"

@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
-  Slist is being moved to <b>slist.austinfstewart.com</b>. It will be back online soon.
+  <form method="post">
+    username: <input type="text" name="username">
+    password: <input type="text" name="password">
+    <input type="submit">
+    {% csrf_token %}
+  </form>
 {% endblock %}
