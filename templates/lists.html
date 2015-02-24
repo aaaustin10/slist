@@ -6,7 +6,7 @@
 {% block content %}
     <form method='POST'>
         {% csrf_token %}
-        <input type='button' value='New List'>
-        <input type='text' name='list_name'>
+        <input type='text' name='list_name' placeholder='New list name'>
+        <input type='submit' value='New List'>
     </form>
 {% endblock %}
