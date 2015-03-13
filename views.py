@@ -10,7 +10,14 @@ class index(TemplateView):
     template_name = "index.html"
 
     def post(self, request):
-        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        if request.POST.get('try'):
+            usern = passw = 'temp'
+        else:
+            usern = request.POST['username']
+            passw = request.POST['password']
+
+        user = authenticate(username=usern, password=passw)
+
         if user:
             login(request, user)
             return HttpResponseRedirect(reverse('lists'))
